@@ -385,12 +385,12 @@
                 </div>
                 <div class="block">
                     <div class="columns is-centered">
-                        <!-- <div class="column">
+                        <div class="column">
                             <figure>
                                 <video muted autoplay playsinline loop controls
                                     src="mfiles/ICRA_DGN_V1_8月22日.mp4"></video>
                             </figure>
-                        </div> -->
+                        </div>
                         <!-- <div class="column is-12-mobile is-10-tablet video-holder">
                             <figure class="">
                                 <style>
@@ -790,7 +790,7 @@
         }
         taskRollouts[video.Environment].push(video);
     });
-    const YTVideoPrefix = "https://www.youtube.com/embed/";
+    // const YTVideoPrefix = "https://www.youtube.com/embed/";
     const YTVideoSuffix = "?autoplay=1&fs=0&modestbranding=1&playsinline=1&rel=0&color=white";
     const YTVideoID = {
         "Home 2": "-A2vuqFizZQ",
@@ -838,15 +838,15 @@
         const taskSelection = document.getElementById('video-task-selection');
         const homeSelection = document.getElementById('video-home-selection');
         const videoSelection = document.getElementById('youtube-embed');
-        taskSelection.addEventListener("change", function (event) {
-            const task = event.target.value;
-            // const home = homeSelection.value;
-            const properHomeName = homeSelection.value;
-            // Calculate start, end from the value.
-            const [start, end] = task.split('-');
-            const videoSelection = document.getElementById('youtube-embed');
-            videoSelection.src = `${YTVideoPrefix}${YTVideoID[properHomeName]}${YTVideoSuffix}&start=${start}&end=${end}`;
-        });
+        // taskSelection.addEventListener("change", function (event) {
+        //     const task = event.target.value;
+        //     // const home = homeSelection.value;
+        //     const properHomeName = homeSelection.value;
+        //     // Calculate start, end from the value.
+        //     const [start, end] = task.split('-');
+        //     const videoSelection = document.getElementById('youtube-embed');
+        //     videoSelection.src = `${YTVideoPrefix}${YTVideoID[properHomeName]}${YTVideoSuffix}&start=${start}&end=${end}`;
+        // });
 
         function updateTaskList(home) {
             const videos = taskRollouts[home];
@@ -866,23 +866,23 @@
             });
             return videos[0];
         }
-        homeSelection.addEventListener("change", function (event) {
-            const properHomeName = this.value;
-            video = updateTaskList(properHomeName);
-            const videoSelection = document.getElementById('youtube-embed');
-            videoSelection.src = `${YTVideoPrefix}${YTVideoID[properHomeName]}${YTVideoSuffix}`;
-        });
+        // homeSelection.addEventListener("change", function (event) {
+        //     const properHomeName = this.value;
+        //     video = updateTaskList(properHomeName);
+        //     const videoSelection = document.getElementById('youtube-embed');
+        //     videoSelection.src = `${YTVideoPrefix}${YTVideoID[properHomeName]}${YTVideoSuffix}`;
+        // });
 
         // Add shuffle option
-        function shuffleVideo() {
-            const randomHome = Object.keys(YTVideoID)[Math.floor(Math.random() * Object.keys(YTVideoID).length)];
-            const randomTask = taskRollouts[randomHome][Math.floor(Math.random() * taskRollouts[randomHome].length)];
-            const videoSelection = document.getElementById('youtube-embed');
-            homeSelection.value = randomTask.Environment;
-            updateTaskList(randomTask.Environment);
-            taskSelection.value = `${randomTask.ST}-${randomTask.ET}`;
-            videoSelection.src = `${YTVideoPrefix}${YTVideoID[randomHome]}${YTVideoSuffix}&start=${randomTask.ST}&end=${randomTask.ET}`;
-        }
+        // function shuffleVideo() {
+        //     const randomHome = Object.keys(YTVideoID)[Math.floor(Math.random() * Object.keys(YTVideoID).length)];
+        //     const randomTask = taskRollouts[randomHome][Math.floor(Math.random() * taskRollouts[randomHome].length)];
+        //     const videoSelection = document.getElementById('youtube-embed');
+        //     homeSelection.value = randomTask.Environment;
+        //     updateTaskList(randomTask.Environment);
+        //     taskSelection.value = `${randomTask.ST}-${randomTask.ET}`;
+        //     videoSelection.src = `${YTVideoPrefix}${YTVideoID[randomHome]}${YTVideoSuffix}&start=${randomTask.ST}&end=${randomTask.ET}`;
+        // }
         shuffleVideo();
         const shuffleButton = document.getElementById('shuffle-button');
         shuffleButton.addEventListener('click', shuffleVideo);
